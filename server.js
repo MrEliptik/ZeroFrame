@@ -1,13 +1,9 @@
 const http  = require('http');
-const url   = require("url");
 const fs    = require('fs');
-const path  = require('path');
-const cmd   = require('node-cmd');
 const sudo  = require('sudo-js');
 const formidable = require('formidable');
 
 
-const username = "user";
 const password = "pwd";
 
 var NumberOfFiles = 0;
@@ -39,7 +35,6 @@ fs.readFile('./upload.js', function(err, data) {
 
 // Server creation
 var server = http.createServer(function(req, res) {
-  var page = url.parse(req.url).pathname;
 
   // GET methode -> User wants something (html, css, etc..)
     if(req.method === "GET") {

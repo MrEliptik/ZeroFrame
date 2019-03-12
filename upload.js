@@ -13,19 +13,19 @@ var images = [];
 let dropArea = document.getElementById("drop-area");
 
 // Prevent default drag behaviors
-;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
   dropArea.addEventListener(eventName, preventDefaults, false);  
   document.body.addEventListener(eventName, preventDefaults, false);
-})
+});
 
 // Highlight drop area when item is dragged over it
-;['dragenter', 'dragover'].forEach(eventName => {
+['dragenter', 'dragover'].forEach(eventName => {
   dropArea.addEventListener(eventName, highlight, false);
-})
+});
 
-;['dragleave', 'drop'].forEach(eventName => {
+['dragleave', 'drop'].forEach(eventName => {
   dropArea.addEventListener(eventName, unhighlight, false);
-})
+});
 
 // Handle dropped files
 dropArea.addEventListener('drop', handleDrop, false);
@@ -35,11 +35,11 @@ function preventDefaults (e) {
   e.stopPropagation();
 }
 
-function highlight(e) {
+function highlight() {
   dropArea.classList.add('highlight');
 }
 
-function unhighlight(e) {
+function unhighlight() {
   dropArea.classList.remove('highlight');
 }
 
@@ -81,7 +81,7 @@ function updateProgress(fileNumber, percent) {
   progressBar.value = total;
   if(total === 100){
     uploadHistory.style.display = "block";
-    filesToBeUploaded.forEach(function(value, i){
+    filesToBeUploaded.forEach(function(value){
       var currentdate = new Date();
       var time = currentdate.getHours()+':'+currentdate.getMinutes()+':'+currentdate.getSeconds();
       ul = document.createElement('li');
@@ -119,7 +119,7 @@ function previewFile(file) {
   reader.onloadend = function() {
     let img = document.createElement('img');
     images.push(img);
-    images.forEach(image => image.addEventListener('click', function(image){
+    images.forEach(image => image.addEventListener('click', function(){
       console.log("click");
       images.forEach(image => {
         image.classList.toggle('selected');
@@ -152,11 +152,13 @@ function previewFile(file) {
 }
 
 // NOT USED FOR NOW
+/*
 function displayDeleteChoice(){
   console.log("test");
 }
+*/
 
-
+/*
 function uploadFiles(){ 
   progressBar.style.display = "inline-block";
 
@@ -170,11 +172,11 @@ function uploadFiles(){
 
   filesToBeUploaded.forEach(uploadFile);
 }
+*/
 
 function uploadFile(file, i) {
   var url = 'http://192.168.0.16:8081/upload'
   //var url = 'http://localhost:8081/upload';
-  var xh = new XMLHttpRequest();
   
   // Second request with the files
   var xhr = new XMLHttpRequest();
@@ -187,7 +189,7 @@ function uploadFile(file, i) {
     updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
   })
 
-  xhr.addEventListener('readystatechange', function(e) {
+  xhr.addEventListener('readystatechange', function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       updateProgress(i, 100) // <- Add this
     }
@@ -201,9 +203,11 @@ function uploadFile(file, i) {
 }
 
 // NOT USED FOR NOW
+/*
 function deleteStart(){
   images.forEach((image) => {
     //image.style.border = "solid 1px";
     image.classList.add('deleteMode');
   });
 }
+*/

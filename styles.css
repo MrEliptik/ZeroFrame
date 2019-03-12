@@ -61,6 +61,7 @@ p {
     display: none;
     /* Reset the default appearance */
     -webkit-appearance: none;
+    -moz-appearance: none;
     height: 20px;
 }
 
@@ -123,7 +124,7 @@ svg:not(:root) {
     cursor:pointer;
     overflow: hidden;
     outline:none;
-    margin: 0px 0 3px 6px;
+    margin: 0 0 3px 6px;
     vertical-align: middle;
     display: none;
   }

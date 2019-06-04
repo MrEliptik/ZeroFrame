@@ -30,7 +30,7 @@
         uppy.use(Uppy.Dashboard, {
             trigger: '.UppyModalOpenerBtn',
             inline: true,
-            target: 'body',
+            target: '#drag-drop-area',
             replaceTargetContent: true,
             showProgressDetails: true,
             height: 800,
@@ -40,7 +40,7 @@
                 { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
             ],
             browserBackButtonClose: true
-        })
+        })      
         uppy.use(Uppy.Tus, { endpoint: '//master.tus.io/files/' })
         uppy.use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })
         uppy.use(Uppy.Dropbox, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })

@@ -72,28 +72,36 @@ var server = http.createServer(function(req, res) {
 
                 form.parse(req, function (err, fields, files) {
                     if(err) throw err;
-    
-                    console.log("Uploading " + files.file.name);
-    
-                    fs.readFile(files.file.path, function(err, data){
-                        if(err) throw err;
+                    
+                    try {
+                        console.log("Uploading " + files['files[]'].name);
 
-                        var fileName = files.file.name;
-                        var directory = '/mnt/usb_share/';
-
-                        fs.writeFile(directory + fileName, data, function(err){
-                            if(err) throw err;  
-                            console.log('File ' + fileName + ' was successfully saved.');
+                        fs.readFile(files['files[]'].path, function(err, data){
+                            if(err) throw err;
+    
+                            var fileName = files['files[]'].name;
+                            var directory = '/mnt/usb_share/';
+                            //var directory = '';
+    
+                            fs.writeFile(directory + fileName, data, function(err){
+                                if(err) throw err;  
+                                console.log('File ' + fileName + ' was successfully saved.');
+                            });
+                            
                         });
-                        
-                    });
-                    FilesReceived++; 
-                    if(FilesReceived == NumberOfFiles){
-                        console.log("Mounting USB back..");  
-                        MountUSB();
-                        FilesReceived = 0;
-                        NumberOfFiles = 0;
-                    }   
+                        FilesReceived++; 
+                        if(FilesReceived == NumberOfFiles){
+                            console.log("Mounting USB back..");  
+                            MountUSB();
+                            FilesReceived = 0;
+                            NumberOfFiles = 0;
+                        }   
+                        res.writeHead(200, {'content-type': 'application/json'});
+                        res.end(JSON.stringify({"message": "success"}));
+                    } catch (error) {
+                        console.log(error);
+                    }
+                    
                 });
             }   
         }

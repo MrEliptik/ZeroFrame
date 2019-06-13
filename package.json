@@ -2,11 +2,7 @@
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
-    "formidable": {
-      "integrity": "sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==",
-      "resolved": "https://registry.npmjs.org/formidable/-/formidable-1.2.1.tgz",
-      "version": "1.2.1"
-    },
+    "formidable": "^1.2.1",
     "inpath": {
       "integrity": "sha1-SsIZcQ7Hpy9GD/lL9CTdPvDlKBc=",
       "resolved": "https://registry.npmjs.org/inpath/-/inpath-1.0.2.tgz",
@@ -22,14 +18,6 @@
       "resolved": "https://registry.npmjs.org/pidof/-/pidof-1.0.2.tgz",
       "version": "1.0.2"
     },
-    "sudo-js": {
-      "integrity": "sha1-tnbXBnU6miO6eGKMuKI/fUVh2RM=",
-      "requires": {
-        "inpath": "1.0.2",
-        "pidof": "1.0.2"
-      },
-      "resolved": "https://registry.npmjs.org/sudo-js/-/sudo-js-1.0.2.tgz",
-      "version": "1.0.2"
-    }
+    "sudo-js": "^1.0.2"
   }
 }

@@ -41,7 +41,7 @@
             ],
             browserBackButtonClose: true
         })      
-        uppy.use(Uppy.Tus, { endpoint: '//master.tus.io/files/' })
+        uppy.use(Uppy.XHRUpload, { endpoint: 'http://localhost:8081/upload' })
         uppy.use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })
         uppy.use(Uppy.Dropbox, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })
         uppy.use(Uppy.Instagram, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })

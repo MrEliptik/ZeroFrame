@@ -1,14 +1,24 @@
 # ZeroFrame
+
 A web based application to upload files to your Raspberry Pi Zero used as an USB mass storage.
+
+Checkout my [blog post](https://blog.victormeunier.com/zero_frame.html) for more information!
+
+<p align="center">
+    <img alt="web interface screenshot" src="img/upload.gif">
+</p>
+
+Web interface using [Uppy](https://uppy.io/)
+
+<p align="center">
+    <img alt="web interface screenshot" src="img/picture_frame.jpg">
+</p>
+
+My digital frame
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-
-### Installing
+For detailed instructions, head to my [blog post](https://blog.victormeunier.com/zero_frame.html).
 
 
 ## Authors

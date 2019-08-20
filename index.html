@@ -124,7 +124,7 @@
           }
         }
       });
-      uppy.use(Uppy.XHRUpload, { endpoint: "http://localhost:8081/upload" });
+      uppy.use(Uppy.XHRUpload, { endpoint: "https://zeroframe.victormeunier.com/upload" });
       uppy.use(Uppy.GoogleDrive, {
         target: Uppy.Dashboard,
         companionUrl: "https://companion.uppy.io"
@@ -150,8 +150,8 @@
 
       function sendReplugStorage() {
         const http = new XMLHttpRequest();
-        //const url = "https://zeroframe.victormeunier.com/replugStorage";
-        const url = "http://localhost:8081/replugStorage";
+        const url = "https://zeroframe.victormeunier.com/replugStorage";
+        //const url = "http://localhost:8081/replugStorage";
         http.open("POST", url);
         http.send();
 

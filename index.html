@@ -27,6 +27,7 @@
         <i id="ftp" class="fas fa-folder fa-4x"></i>
         <i id="restart" class="fas fa-undo fa-4x"></i>
       </div>
+      <div class="notify"><span id="notifyType" class=""></span></div>
       <div id="drag-drop-area"></div>
     </div>
 
@@ -149,13 +150,24 @@
 
       function sendReplugStorage() {
         const http = new XMLHttpRequest();
-        const url = "https://zeroframe.victormeunier.com/replugStorage";
+        //const url = "https://zeroframe.victormeunier.com/replugStorage";
+        const url = "http://localhost:8081/replugStorage";
         http.open("POST", url);
         http.send();
 
-        http.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200){
+        http.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
             console.log(http.responseText);
+            // TODO: handle failure or success
+            notify = document.querySelector(".notify");
+            notify_type = document.getElementById("notifyType");
+            notify.classList.add("active");
+            notify_type.classList.add("success");
+
+            setTimeout(() => {
+              notify.classList.remove("active");
+              notify_type.classList.remove("success");
+            }, 2000);
           }
         };
       }

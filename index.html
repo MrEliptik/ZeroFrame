@@ -1,55 +1,164 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
     <title>ZeroFrame</title>
-    <meta name="description" content="ZeroFrame">
-    <meta name="author" content="Victor Meunier">
-
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="ZeroFrame" />
+    <meta name="author" content="Victor Meunier" />
 
     <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
+    <script src="https://kit.fontawesome.com/9a5860ea71.js"></script>
 
+    <link
+      href="https://transloadit.edgly.net/releases/uppy/v1.2.0/uppy.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-    <link href="https://transloadit.edgly.net/releases/uppy/v1.0.0/uppy.min.css" rel="stylesheet">
-
-</head>
-
-<body>
-    <div id="drag-drop-area"></div>
+  <body>
+    <div>
+      <div class="header">
+        <i id="home" class="fas fa-home fa-4x"></i>
+        <i id="ftp" class="fas fa-folder fa-4x"></i>
+        <i id="restart" class="fas fa-undo fa-4x"></i>
+      </div>
+      <div id="drag-drop-area"></div>
+    </div>
 
     <!--<script src="upload.js"></script>-->
-    <script src="https://transloadit.edgly.net/releases/uppy/v1.0.0/uppy.min.js"></script>
+    <script src="https://transloadit.edgly.net/releases/uppy/v1.2.0/uppy.min.js"></script>
     <script>
-        const uppy = Uppy.Core()
-        uppy.use(Uppy.Dashboard, {
-            trigger: '.UppyModalOpenerBtn',
-            inline: true,
-            target: '#drag-drop-area',
-            replaceTargetContent: true,
-            showProgressDetails: true,
-            height: 800,
-            width: 1920,
-            metaFields: [
-                { id: 'name', name: 'Name', placeholder: 'file name' },
-                { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
-            ],
-            browserBackButtonClose: true
-        })      
-        uppy.use(Uppy.XHRUpload, { endpoint: 'http://localhost:8081/upload' })
-        uppy.use(Uppy.GoogleDrive, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })
-        uppy.use(Uppy.Dropbox, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })
-        uppy.use(Uppy.Instagram, { target: Uppy.Dashboard, companionUrl: 'https://companion.uppy.io' })
-        uppy.use(Uppy.Webcam, { target: Uppy.Dashboard })
-        uppy.on('complete', (result) => {
-            console.log('Upload result:', result)
-        })
-    </script>
-</body>
+      // ############## UPPY ###############
+      const uppy = Uppy.Core();
+      uppy.use(Uppy.Dashboard, {
+        trigger: ".UppyModalOpenerBtn",
+        inline: true,
+        target: "#drag-drop-area",
+        replaceTargetContent: true,
+        showProgressDetails: true,
+        height: 600,
+        width: 1920,
+        metaFields: [
+          { id: "name", name: "Name", placeholder: "file name" },
+          {
+            id: "caption",
+            name: "Caption",
+            placeholder: "describe what the image is about"
+          }
+        ],
+        browserBackButtonClose: true,
+        locale: {
+          strings: {
+            // When `inline: false`, used as the screen reader label for the button that closes the modal.
+            closeModal: "Fermer la fenêtre",
+            // Used as the screen reader label for the plus (+) button that shows the “Add more files” screen
+            addMoreFiles: "Ajouter plus de fichiers",
+            // Used as the header for import panels, e.g., “Import from Google Drive”.
+            importFrom: "Importer depuis %{name}",
+            // When `inline: false`, used as the screen reader label for the dashboard modal.
+            dashboardWindowTitle:
+              "Fenêtre Uppy Dashboard (Appuyer sur Echap pour fermer)",
+            // When `inline: true`, used as the screen reader label for the dashboard area.
+            dashboardTitle: "Uppy Dashboard",
+            // Shown in the Informer when a link to a file was copied to the clipboard.
+            copyLinkToClipboardSuccess: "Lien copié dans le presse-papier.",
+            // Used when a link cannot be copied automatically — the user has to select the text from the
+            // input element below this string.
+            copyLinkToClipboardFallback: "Copier l'URL ci-dessous",
+            // Used as the hover title and screen reader label for buttons that copy a file link.
+            copyLink: "Copier le lien",
+            // Used as the hover title and screen reader label for file source icons, e.g., “File source: Dropbox”.
+            fileSource: "Fichier source: %{name}",
+            // Used as the label for buttons that accept and close panels (remote providers or metadata editor)
+            done: "Terminé",
+            // Used as the screen reader label for buttons that remove a file.
+            removeFile: "Supprimer fichier",
+            // Used as the screen reader label for buttons that open the metadata editor panel for a file.
+            editFile: "Editer fichier",
+            // Shown in the panel header for the metadata editor. Rendered as “Editing image.png”.
+            editing: "Edition de %{file}",
+            // Text for a button shown on the file preview, used to edit file metadata
+            edit: "Editer",
+            // Used as the screen reader label for the button that saves metadata edits and returns to the
+            // file list view.
+            finishEditingFile: "Terminer l'édittion du fichier",
+            // Used as the label for the tab button that opens the system file selection dialog.
+            myDevice: "Mon appareil",
+            // Shown in the main dashboard area when no files have been selected, and one or more
+            // remote provider plugins are in use. %{browse} is replaced with a link that opens the system
+            // file selection dialog.
+            dropPasteImport:
+              "Déposer des fichiers ici, %{browse} ou importer depuis :",
+            // Shown in the main dashboard area when no files have been selected, and no provider
+            // plugins are in use. %{browse} is replaced with a link that opens the system
+            // file selection dialog.
+            dropPaste: "Déposer des fichiers ici, coller, ou %{browse}",
+            // This string is clickable and opens the system file selection dialog.
+            browse: "naviguer",
+            // Used as the hover text and screen reader label for file progress indicators when
+            // they have been fully uploaded.
+            uploadComplete: "Téléversement terminé",
+            // Used as the hover text and screen reader label for the buttons to resume paused uploads.
+            resumeUpload: "Reprendre le téléversement",
+            // Used as the hover text and screen reader label for the buttons to pause uploads.
+            pauseUpload: "Mettre le téléversement en pause",
+            // Used as the hover text and screen reader label for the buttons to retry failed uploads.
+            retryUpload: "Réessayer le téléversement",
 
+            // Used in a title, how many files are currently selected
+            xFilesSelected: {
+              0: "%{smart_count} fichier sélectioné",
+              1: "%{smart_count} fichiers sélectionés"
+            },
+
+            // @uppy/status-bar strings:
+            uploading: "Téléversement..",
+            complete: "Terminé"
+            // ...etc
+          }
+        }
+      });
+      uppy.use(Uppy.XHRUpload, { endpoint: "http://localhost:8081/upload" });
+      uppy.use(Uppy.GoogleDrive, {
+        target: Uppy.Dashboard,
+        companionUrl: "https://companion.uppy.io"
+      });
+      uppy.use(Uppy.Dropbox, {
+        target: Uppy.Dashboard,
+        companionUrl: "https://companion.uppy.io"
+      });
+      uppy.use(Uppy.Instagram, {
+        target: Uppy.Dashboard,
+        companionUrl: "https://companion.uppy.io"
+      });
+      uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
+      uppy.on("complete", result => {
+        console.log("Upload result:", result);
+      });
+
+      // Own script
+      btn_restart = document.getElementById("restart");
+      btn_restart.addEventListener("click", () => {
+        sendReplugStorage();
+      });
+
+      function sendReplugStorage() {
+        const http = new XMLHttpRequest();
+        const url = "https://zeroframe.victormeunier.com/replugStorage";
+        http.open("POST", url);
+        http.send();
+
+        http.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            console.log(http.responseText);
+          }
+        };
+      }
+    </script>
+  </body>
 </html>

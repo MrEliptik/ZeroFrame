@@ -10,6 +10,11 @@ body {
   margin: 10px 0px 10px 0px;
 }
 
+.header > a {
+  margin: 0px 8px 0 8px;
+  color: rgb(231, 231, 231);
+}
+
 .header > i {
   margin: 0px 8px 0 8px;
   color: rgb(231, 231, 231);

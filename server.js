@@ -141,7 +141,7 @@ function UnmoutUSB() {
 }
 
 async function compressImage(filePath){
-  var command = "convert" + filePath + "-quality 30%" + filePath;
+  var command = "convert " + filePath + "-quality 30% " + filePath;
   const { stdout, stderr } = await exec(command);
   console.log('stdout:', stdout);
   console.log('stderr:', stderr);

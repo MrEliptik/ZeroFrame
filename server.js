@@ -2,6 +2,8 @@ const http = require("http");
 const fs = require("fs");
 const sudo = require("sudo-js");
 const formidable = require("formidable");
+const util = require("util");
+const exec = util.promisify(require("child_process").exec);
 
 const password = "pwd";
 
@@ -91,6 +93,8 @@ var server = http.createServer(function(req, res) {
               fs.writeFile(directory + fileName, data, function(err) {
                 if (err) throw err;
                 console.log("File " + fileName + " was successfully saved.");
+                console.log("Compressing image..");
+                compressImage(directory + fileName)
               });
             });
             FilesReceived++;
@@ -134,4 +138,11 @@ function UnmoutUSB() {
   sudo.exec(command, function(err, pid, result) {
     console.log(result);
   });
+}
+
+async function compressImage(filePath){
+  var command = "convert" + filePath + "-quality 30%" + filePath;
+  const { stdout, stderr } = await exec(command);
+  console.log('stdout:', stdout);
+  console.log('stderr:', stderr);
 }

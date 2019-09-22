@@ -127,6 +127,7 @@
         }
       });
       uppy.use(Uppy.XHRUpload, { endpoint: "https://zeroframe.victormeunier.com/upload" });
+      /*
       uppy.use(Uppy.GoogleDrive, {
         target: Uppy.Dashboard,
         companionUrl: "http://192.168.0.23:3020"
@@ -139,6 +140,7 @@
         target: Uppy.Dashboard,
         companionUrl: "http://192.168.0.23:3020"
       });
+      */
       uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
       uppy.on("complete", result => {
         console.log("Upload result:", result);

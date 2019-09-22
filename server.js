@@ -20,6 +20,13 @@ fs.readFile("./index.html", function(err, data) {
   htmlFile = data;
 });
 
+fs.readFile("./favicon.ico", function(err, data) {
+  if (err) {
+    throw err;
+  }
+  favicon = data;
+});
+
 fs.readFile("./styles.css", function(err, data) {
   if (err) {
     throw err;
@@ -48,6 +55,11 @@ var server = http.createServer(function(req, res) {
       case "/styles.css":
         res.writeHead(200, { "Content-Type": "text/css" });
         res.write(cssFile);
+        res.end();
+        break;
+      case "/favicon.ico":
+        res.writeHead(200, { "Content-Type": "image/x-icon" });
+        res.write(favicon);
         res.end();
         break;
       case "/":

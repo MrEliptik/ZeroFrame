@@ -8,6 +8,8 @@
     <meta name="description" content="ZeroFrame" />
     <meta name="author" content="Victor Meunier" />
 
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
     <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
@@ -127,15 +129,15 @@
       uppy.use(Uppy.XHRUpload, { endpoint: "https://zeroframe.victormeunier.com/upload" });
       uppy.use(Uppy.GoogleDrive, {
         target: Uppy.Dashboard,
-        companionUrl: "https://companion.uppy.io"
+        companionUrl: "http://192.168.0.23:3020"
       });
       uppy.use(Uppy.Dropbox, {
         target: Uppy.Dashboard,
-        companionUrl: "https://companion.uppy.io"
+        companionUrl: "http://192.168.0.23:3020"
       });
       uppy.use(Uppy.Instagram, {
         target: Uppy.Dashboard,
-        companionUrl: "https://companion.uppy.io"
+        companionUrl: "http://192.168.0.23:3020"
       });
       uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
       uppy.on("complete", result => {
